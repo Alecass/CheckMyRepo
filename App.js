@@ -1,10 +1,16 @@
 import React from 'react';
-import {View} from 'react-native';
+
+import Navigation from './components/Navigation';
+import {StatusBar} from 'react-native';
+import {useEffect} from 'react';
 
 const App = () => {
-  return <View></View>;
+  return (
+    <>
+      <StatusBar hidden />
+      <Navigation></Navigation>
+    </>
+  );
 };
-
-const styles = StyleSheet.create({});
 
 export default App;
