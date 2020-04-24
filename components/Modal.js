@@ -3,11 +3,11 @@ import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import AppBar from './AppBar';
 
-const Modal = ({navigation}) => {
+const Modal = ({navigation, route}) => {
   return (
     <SafeAreaView>
-      <AppBar navigation={navigation}></AppBar>
-      <Text>Modal</Text>
+      <AppBar navigation={navigation} title={route.params.type}></AppBar>
+      <Text></Text>
     </SafeAreaView>
   );
 };

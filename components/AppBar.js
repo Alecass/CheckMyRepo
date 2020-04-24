@@ -2,22 +2,20 @@ import React from 'react';
 import {StyleSheet, Image, View, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const AppBar = ({navigation}) => {
+const AppBar = ({navigation, title}) => {
   const backHandler = () => {
     navigation.pop();
   };
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity onPress={backHandler}>
+        <Image
+          style={styles.icon}
+          source={require('../assets/images/back_icon/back.png')}></Image>
+      </TouchableOpacity>
       <View>
-        <TouchableOpacity onPress={backHandler}>
-          <Image
-            style={styles.icon}
-            source={require('../assets/images/back_icon/back.png')}></Image>
-        </TouchableOpacity>
-      </View>
-      <View>
-        <Text style={styles.title}>Title</Text>
+        <Text style={styles.title}>{title}</Text>
       </View>
     </View>
   );
@@ -36,5 +34,9 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     fontSize: 22,
     fontFamily: 'OpenSans-Bold',
+  },
+  icon: {
+    height: 18,
+    width: 22,
   },
 });
