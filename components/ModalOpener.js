@@ -1,16 +1,21 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+//state
+import {AppContext} from '../state/appState';
 
 const ModalOpener = ({open, hint}) => {
+  const [app, setApp] = useContext(AppContext);
+
   return (
-    <>
-      <TouchableOpacity onPress={open}>
-        <View style={styles.hintContainer}>
-          <Text style={styles.domain}>/</Text>
-          <Text style={styles.hint}>{hint}</Text>
-        </View>
-      </TouchableOpacity>
-    </>
+    <TouchableOpacity onPress={open}>
+      <View style={styles.hintContainer}>
+        <Text style={styles.domain}>/</Text>
+        <Text
+          style={[styles.hint, {color: app[hint] != hint ? 'black' : 'gray'}]}>
+          {hint}
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -27,7 +32,6 @@ const styles = StyleSheet.create({
   },
   hint: {
     fontSize: 32,
-    color: 'gray',
     fontFamily: 'OpenSans-Regular',
   },
 });

@@ -11,6 +11,7 @@ import ModalOpener from '../components/ModalOpener';
 import Button from '../components/Button';
 //state
 import {AppContext} from '../state/appState';
+import Error from '../components/Error';
 
 const Main = ({navigation}) => {
   const [app, setApp] = useContext(AppContext);
@@ -38,6 +39,9 @@ const Main = ({navigation}) => {
           openModal('Repository');
         }}
       />
+      <Error
+        err={'check your username or your repository name'}
+        boldWords={['username', 'repository']}></Error>
 
       <Button
         name={'CHECK'}

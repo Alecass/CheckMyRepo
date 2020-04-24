@@ -45,7 +45,6 @@ const Modal = ({navigation, route}) => {
       <AppBar navigation={navigation} title={route.params.type}></AppBar>
       <View style={styles.inputContainer}>
         <TextInput
-          maxLength={18}
           autoFocus={true}
           onChange={(e) => {
             inputUpdate(e.nativeEvent.text);
@@ -63,7 +62,9 @@ const Modal = ({navigation, route}) => {
           underlineColorAndroid="black"
         />
       </View>
-      {err != '' ? <Error err={err}></Error> : null}
+      {err != '' ? (
+        <Error err={err} boldWords={['cannot']} isCentered={true} />
+      ) : null}
       <Button name="DONE" pressed={onDone} />
     </SafeAreaView>
   );

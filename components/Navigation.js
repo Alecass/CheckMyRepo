@@ -10,7 +10,7 @@ import Modal from '../screens/Modal';
 
 const Stack = createStackNavigator();
 
-const Navigation = () => {
+const Navigation = ({isConnected}) => {
   return (
     <AppProvider>
       <NavigationContainer>
@@ -18,6 +18,9 @@ const Navigation = () => {
           screenOptions={{
             header: () => {
               null;
+            },
+            cardStyle: {
+              backgroundColor: isConnected ? 'whitesmoke' : 'rgb(252,154,156)',
             },
           }}>
           <Stack.Screen name="MainPage" component={Main} />
