@@ -25,9 +25,7 @@ export default AppBar;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
     alignItems: 'center',
-    height: 50,
     flexDirection: 'row',
   },
   title: {
