@@ -36,7 +36,7 @@ const Modal = ({navigation, route}) => {
       }
       navigation.pop();
     } else {
-      setErr('Input form cannot be empty😡');
+      setErr("Input form can't be empty😡");
     }
   };
 

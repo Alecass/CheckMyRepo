@@ -1,14 +1,23 @@
 # CheckMyRepo
 
+### Code-Test from https://www.punchlab.net
+
 ## Installation
 
-1. `npm i`
+```yaml
+npm install
+```
 
 ### Android:
 
-1. `react-native run-android`
+```yaml
+react-native run-android
+```
 
 ### Ios:
 
-1. `pod install`
-2. `react-native run-ios`
+```yaml
+pod install
+
+react-native run-ios
+```
