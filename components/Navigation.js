@@ -8,6 +8,7 @@ import Main from '../screens/Main';
 import Modal from '../screens/Modal';
 //state
 import {AppContext} from '../state/appState';
+import Success from '../screens/Success';
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,11 @@ const Navigation = () => {
           name="Modal"
           options={{...TransitionPresets.ModalSlideFromBottomIOS}}
           component={Modal}
+        />
+        <Stack.Screen
+          name="Success"
+          options={{...TransitionPresets.ModalSlideFromBottomIOS}}
+          component={Success}
         />
       </Stack.Navigator>
     </NavigationContainer>

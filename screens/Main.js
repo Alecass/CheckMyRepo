@@ -40,15 +40,16 @@ const Main = ({navigation}) => {
   };
 
   const checkRepo = () => {
-    setRepoUrl(`https://github.com/${app.user}/${app.repo}`);
+    let repo = `https://github.com/${app.user}/${app.repo}`;
+    setRepoUrl(repo);
     //check if the repository is available
-    fetch(repoUrl, {
-      method: 'Get',
-    })
+    fetch(repo)
       .then((server) => {
         if (server.status != 200) {
+          //NO REPO
           setApp({...app, badRepo: true, isConnected: true});
         } else {
+          //SUCCESS
           setApp({
             ...app,
             badRepo: false,
@@ -57,7 +58,10 @@ const Main = ({navigation}) => {
           });
         }
       })
-      .catch(() => setApp({...app, isConnected: false}));
+      .catch((err) => {
+        //ERROR
+        setApp({...app, isConnected: false});
+      });
   };
 
   const sendMessage = () => {
@@ -68,9 +72,16 @@ const Main = ({navigation}) => {
         'Content-Type': 'text/plain',
       },
       body: `👉🏻 ${repoUrl} \n👽 Alessio Cassano`,
-    }).then((res) => {
-      console.log(repoUrl);
-    });
+    })
+      .then((res) => {
+        //SUCCESS
+        if (res.status === 200) {
+          navigation.navigate('Success');
+        }
+      })
+      .catch((err) => {
+        setApp({...app, isConnected: false, isReadyToSend: false});
+      });
   };
 
   return (
