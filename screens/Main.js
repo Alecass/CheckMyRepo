@@ -17,10 +17,13 @@ import Error from '../components/Error';
 
 const Main = ({navigation}) => {
   const API = 'https://pushmore.marc.io/webhook/3MuQhpkaxmkzpzXfBTCXZAEb';
+  const DOMAIN = 'https://github.com/';
+
   const [repoUrl, setRepoUrl] = useState();
   const [loading, setLoading] = useState();
   const [app, setApp] = useContext(AppContext);
 
+  //type paramater => name of the selected modal page(User or Repository)
   const openModal = (type) => {
     navigation.navigate('Modal', {type: type});
     setApp({...app, isReadyToSend: false});
@@ -45,7 +48,7 @@ const Main = ({navigation}) => {
   //check button pressed =>
   const checkRepo = () => {
     setLoading(true);
-    let repo = `https://github.com/${app.user}/${app.repo}`;
+    let repo = `${DOMAIN}${app.user}/${app.repo}`;
     setRepoUrl(repo);
     //check if the repository is available
     fetch(repo)

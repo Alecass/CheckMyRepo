@@ -23,6 +23,7 @@ const Navigation = () => {
           },
         }}>
         <Stack.Screen
+          //set screen color basing on app state
           options={{
             cardStyle: {
               backgroundColor:
