@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   StatusBar,
+  Platform,
 } from 'react-native';
 //components
 import ModalOpener from '../components/ModalOpener';
@@ -59,7 +60,9 @@ const Main = ({navigation}) => {
           setApp({...app, badRepo: true, isConnected: true});
         } else {
           //SUCCESS
-          StatusBar.setBackgroundColor('green');
+          if (Platform.OS === 'android') {
+            StatusBar.setBackgroundColor('green');
+          }
           setApp({
             ...app,
             badRepo: false,
