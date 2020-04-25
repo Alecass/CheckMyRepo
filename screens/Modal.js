@@ -16,20 +16,20 @@ import Error from '../components/Error';
 import {AppContext} from '../state/appState';
 
 const Modal = ({navigation, route}) => {
+  const type = route.params.type;
   const [app, setApp] = useContext(AppContext);
   const [keyboardInput, setKeyboardInput] = useState('');
   const [err, setErr] = useState('');
   //catch the input event
   const inputUpdate = (text) => {
     setKeyboardInput(text);
-    setErr('');
   };
 
   //triggered when done button pressed
   const onDone = () => {
     //check wich page is open and assign the keyboard input to the relative state object
     if (keyboardInput != '') {
-      if (route.params.type === 'User') {
+      if (type === 'User') {
         setApp({...app, user: keyboardInput});
       } else {
         setApp({...app, repo: keyboardInput});
@@ -55,7 +55,7 @@ const Modal = ({navigation, route}) => {
           selectionColor={'rgba(23,23,23,0.2)'}
           style={styles.input}
           placeholder={
-            route.params.type === 'User'
+            type === 'User'
               ? 'Type your github username'
               : 'type your repository name'
           }
@@ -63,7 +63,7 @@ const Modal = ({navigation, route}) => {
         />
       </View>
       {err != '' ? (
-        <Error err={err} boldWords={['cannot']} isCentered={true} />
+        <Error err={err} boldWords={["can't"]} isCentered={true} />
       ) : null}
       <Button name="DONE" pressed={onDone} />
     </SafeAreaView>

@@ -1,37 +1,47 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
-//state
-import {AppProvider} from '../state/appState';
+
 //Main Page
 import Main from '../screens/Main';
 //Secondary pages
 import Modal from '../screens/Modal';
+//state
+import {AppContext} from '../state/appState';
 
 const Stack = createStackNavigator();
 
-const Navigation = ({isConnected}) => {
+const Navigation = () => {
+  const [app, setApp] = useContext(AppContext);
   return (
-    <AppProvider>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            header: () => {
-              null;
-            },
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          header: () => {
+            null;
+          },
+        }}>
+        <Stack.Screen
+          options={{
             cardStyle: {
-              backgroundColor: isConnected ? 'whitesmoke' : 'rgb(252,154,156)',
+              backgroundColor:
+                !app.isConnected || app.badRepo
+                  ? 'rgb(252,154,156)'
+                  : app.isConnected && !app.badRepo && app.isReadyToSend
+                  ? 'rgb(192,255,210)'
+                  : 'whitesmoke',
             },
-          }}>
-          <Stack.Screen name="MainPage" component={Main} />
-          <Stack.Screen
-            name="Modal"
-            options={{...TransitionPresets.ModalSlideFromBottomIOS}}
-            component={Modal}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </AppProvider>
+          }}
+          name="MainPage"
+          component={Main}
+        />
+        <Stack.Screen
+          name="Modal"
+          options={{...TransitionPresets.ModalSlideFromBottomIOS}}
+          component={Modal}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 

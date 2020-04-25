@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Dimensions} from 'react-native';
+import {StyleSheet, Text, View, Dimensions, StatusBar} from 'react-native';
 import {useEffect} from 'react';
 
 const Error = ({err, boldWords, isCentered, ...props}) => {
@@ -36,7 +36,12 @@ const Error = ({err, boldWords, isCentered, ...props}) => {
   };
 
   return (
-    <View style={[styles.errContainer, {width: isCentered ? null : 300}]}>
+    <View
+      style={[
+        styles.errContainer,
+        {width: isCentered ? null : Dimensions.get('screen').width / 1.1},
+      ]}>
+      <StatusBar animated backgroundColor={'#FF584F'}></StatusBar>
       {RichText()}
     </View>
   );

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -14,10 +14,63 @@ import {AppContext} from '../state/appState';
 import Error from '../components/Error';
 
 const Main = ({navigation}) => {
+  const API = 'https://pushmore.marc.io/webhook/3MuQhpkaxmkzpzXfBTCXZAEb';
+  const [repoUrl, setRepoUrl] = useState();
   const [app, setApp] = useContext(AppContext);
 
   const openModal = (type) => {
     navigation.navigate('Modal', {type: type});
+    setApp({...app, isReadyToSend: false});
+  };
+
+  const errorHandler = () => {
+    if (!app.isConnected) {
+      return (
+        <Error
+          err={'Check your internet connection'}
+          boldWords={['internet', 'connection']}></Error>
+      );
+    } else if (app.badRepo) {
+      return (
+        <Error
+          err={'check your username or your repository name'}
+          boldWords={['username', 'repository']}></Error>
+      );
+    }
+  };
+
+  const checkRepo = () => {
+    setRepoUrl(`https://github.com/${app.user}/${app.repo}`);
+    //check if the repository is available
+    fetch(repoUrl, {
+      method: 'Get',
+    })
+      .then((server) => {
+        if (server.status != 200) {
+          setApp({...app, badRepo: true, isConnected: true});
+        } else {
+          setApp({
+            ...app,
+            badRepo: false,
+            isConnected: true,
+            isReadyToSend: true,
+          });
+        }
+      })
+      .catch(() => setApp({...app, isConnected: false}));
+  };
+
+  const sendMessage = () => {
+    fetch(API, {
+      method: 'POST',
+      headers: {
+        Accept: 'text/plain',
+        'Content-Type': 'text/plain',
+      },
+      body: `👉🏻 ${repoUrl} \n👽 Alessio Cassano`,
+    }).then((res) => {
+      console.log(repoUrl);
+    });
   };
 
   return (
@@ -39,15 +92,12 @@ const Main = ({navigation}) => {
           openModal('Repository');
         }}
       />
-      <Error
-        err={'check your username or your repository name'}
-        boldWords={['username', 'repository']}></Error>
+      {errorHandler()}
 
+      {/* check && send button */}
       <Button
-        name={'CHECK'}
-        pressed={() => {
-          console.log('CHECKING...');
-        }}
+        name={app.isReadyToSend ? 'SEND' : 'CHECK'}
+        pressed={!app.isReadyToSend ? checkRepo : sendMessage}
       />
     </SafeAreaView>
   );

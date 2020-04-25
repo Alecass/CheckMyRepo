@@ -6,6 +6,9 @@ export const AppProvider = (props) => {
   const [app, setApp] = useState({
     user: 'user',
     repo: 'repo',
+    isConnected: true,
+    badRepo: false,
+    isReadyToSend: false,
   });
   return (
     <AppContext.Provider value={[app, setApp]}>
