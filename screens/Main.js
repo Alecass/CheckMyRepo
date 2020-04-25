@@ -17,7 +17,7 @@ import {AppContext} from '../state/appState';
 import Error from '../components/Error';
 
 const Main = ({navigation}) => {
-  const API = 'https://pushmore.marc.io/webhook/3MuQhpkaxmkzpzXfBTCXZAEb';
+  const API = 'https://pushmore.io/webhook/d3Gm4aEPCuhAUjfbECLLdW41';
   const DOMAIN = 'https://github.com/';
 
   const [repoUrl, setRepoUrl] = useState();
