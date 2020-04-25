@@ -42,7 +42,7 @@ const Modal = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <AppBar navigation={navigation} title={route.params.type}></AppBar>
+      <AppBar navigation={navigation} title={type}></AppBar>
       <View style={styles.inputContainer}>
         <TextInput
           autoFocus={true}
