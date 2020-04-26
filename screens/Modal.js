@@ -56,7 +56,7 @@ const Modal = ({navigation, route}) => {
           style={styles.input}
           placeholder={
             type === 'User'
-              ? 'Type your github username'
+              ? 'type your github username'
               : 'type your repository name'
           }
           underlineColorAndroid="black"

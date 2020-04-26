@@ -17,7 +17,8 @@ import {AppContext} from '../state/appState';
 import Error from '../components/Error';
 
 const Main = ({navigation}) => {
-  const API = 'https://pushmore.io/webhook/d3Gm4aEPCuhAUjfbECLLdW41';
+  //your api key
+  const API = 'https://pushmore.marc.io/webhook/3MuQhpkaxmkzpzXfBTCXZAEb';
   const DOMAIN = 'https://github.com/';
 
   const [repoUrl, setRepoUrl] = useState();
@@ -49,7 +50,7 @@ const Main = ({navigation}) => {
   //check button pressed =>
   const checkRepo = () => {
     setLoading(true);
-    let repo = `${DOMAIN}${app.user}/${app.repo}`;
+    const repo = `${DOMAIN}${app.user}/${app.repo}`;
     setRepoUrl(repo);
     //check if the repository is available
     fetch(repo)

@@ -11,16 +11,10 @@ const Button = ({name, pressed}) => {
   /* Ios => add keyboard avoiding view to prevent the keyboard for going over the button.*/
 
   /* Android => automatically update the view height using flex. Use of KeyboardAvoidingView not indispensable */
-
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : null}
-      style={{
-        display: 'flex',
-        flex: 2,
-        justifyContent: 'flex-end',
-        alignItems: 'flex-end',
-      }}>
+      style={styles.container}>
       <TouchableOpacity
         onPress={() => {
           pressed();
@@ -33,4 +27,11 @@ const Button = ({name, pressed}) => {
 
 export default Button;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flex: 2,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+  },
+});

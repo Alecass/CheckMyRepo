@@ -1,7 +1,6 @@
 import React, {useContext, useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
-
 //Main Page
 import Main from '../screens/Main';
 //Secondary pages

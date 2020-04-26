@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, Text, View, Dimensions, StatusBar} from 'react-native';
-import {useEffect} from 'react';
 
 const Error = ({err, boldWords, isCentered, ...props}) => {
   //algorithm for creating rich text

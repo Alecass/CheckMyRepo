@@ -27,12 +27,7 @@ const Loader = ({loading}) => {
   };
   return (
     <Animated.View style={[styles.loaderContainer, {opacity: fade}]}>
-      <View
-        style={{
-          backgroundColor: 'white',
-          borderRadius: 100,
-          padding: 20,
-        }}>
+      <View style={styles.loaderImageContainer}>
         <Image
           style={{height: 40, width: 40}}
           source={require('../assets/images/loading.gif')}
@@ -57,5 +52,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  loaderImageContainer: {
+    backgroundColor: 'white',
+    borderRadius: 100,
+    padding: 20,
   },
 });
