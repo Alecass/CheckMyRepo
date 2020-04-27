@@ -12,7 +12,8 @@ const AppBar = ({navigation, title}) => {
       <TouchableOpacity onPress={backHandler}>
         <Image
           style={styles.icon}
-          source={require('../assets/images/back_icon/back.png')}></Image>
+          source={require('../assets/images/back_icon/back.png')}
+        />
       </TouchableOpacity>
       <View>
         <Text style={styles.title}>{title}</Text>

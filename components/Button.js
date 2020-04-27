@@ -19,7 +19,7 @@ const Button = ({name, pressed}) => {
         onPress={() => {
           pressed();
         }}>
-        <Text style={{fontSize: 25, fontFamily: 'OpenSans-Bold'}}>{name}</Text>
+        <Text style={styles.text}>{name}</Text>
       </TouchableOpacity>
     </KeyboardAvoidingView>
   );
@@ -34,4 +34,5 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
   },
+  text: {fontSize: 25, fontFamily: 'OpenSans-Bold'},
 });

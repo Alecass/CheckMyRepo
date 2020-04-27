@@ -5,7 +5,7 @@ import {AppProvider} from './state/appState';
 const App = () => {
   return (
     <AppProvider>
-      <Navigation></Navigation>
+      <Navigation />
     </AppProvider>
   );
 };

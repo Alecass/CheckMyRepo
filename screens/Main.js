@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
   SafeAreaView,
   StatusBar,
   Platform,
@@ -17,8 +16,8 @@ import {AppContext} from '../state/appState';
 import Error from '../components/Error';
 
 const Main = ({navigation}) => {
-  //your api key
-  const API = 'https://pushmore.marc.io/webhook/3MuQhpkaxmkzpzXfBTCXZAEb';
+  //your telegram push bot api key
+  const API = '';
   const DOMAIN = 'https://github.com/';
 
   const [repoUrl, setRepoUrl] = useState();
@@ -36,13 +35,15 @@ const Main = ({navigation}) => {
       return (
         <Error
           err={'Check your internet connection'}
-          boldWords={['internet', 'connection']}></Error>
+          boldWords={['internet', 'connection']}
+        />
       );
     } else if (app.badRepo) {
       return (
         <Error
           err={'check your username or your repository name'}
-          boldWords={['username', 'repository']}></Error>
+          boldWords={['username', 'repository']}
+        />
       );
     }
   };
@@ -56,7 +57,7 @@ const Main = ({navigation}) => {
     fetch(repo)
       .then((server) => {
         setLoading(false);
-        if (server.status != 200) {
+        if (server.status !== 200) {
           //NO REPO
           setApp({...app, badRepo: true, isConnected: true});
         } else {
@@ -72,7 +73,7 @@ const Main = ({navigation}) => {
           });
         }
       })
-      .catch((err) => {
+      .catch(() => {
         //ERROR
         setLoading(false);
         setApp({...app, isConnected: false});
@@ -98,7 +99,7 @@ const Main = ({navigation}) => {
         }
       })
       //ERROR
-      .catch((err) => {
+      .catch(() => {
         setLoading(false);
         setApp({...app, isConnected: false, isReadyToSend: false});
       });

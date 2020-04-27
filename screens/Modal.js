@@ -1,12 +1,10 @@
 import React, {useState, useContext} from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   SafeAreaView,
   TextInput,
   Platform,
-  KeyboardAvoidingView,
 } from 'react-native';
 
 import AppBar from '../components/AppBar';
@@ -28,7 +26,7 @@ const Modal = ({navigation, route}) => {
   //triggered when done button pressed
   const onDone = () => {
     //check wich page is open and assign the keyboard input to the relative state object
-    if (keyboardInput != '') {
+    if (keyboardInput !== '') {
       if (type === 'User') {
         setApp({...app, user: keyboardInput});
       } else {
@@ -42,7 +40,7 @@ const Modal = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <AppBar navigation={navigation} title={type}></AppBar>
+      <AppBar navigation={navigation} title={type} />
       <View style={styles.inputContainer}>
         <TextInput
           autoFocus={true}
@@ -62,7 +60,7 @@ const Modal = ({navigation, route}) => {
           underlineColorAndroid="black"
         />
       </View>
-      {err != '' ? (
+      {err !== '' ? (
         <Error err={err} boldWords={["can't"]} isCentered={true} />
       ) : null}
       <Button name="DONE" pressed={onDone} />

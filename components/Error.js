@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, Dimensions, StatusBar} from 'react-native';
 
-const Error = ({err, boldWords, isCentered, ...props}) => {
+const Error = ({err, boldWords, isCentered}) => {
   //algorithm for creating rich text
   const RichText = () => {
     //error string message => to array of single words
@@ -13,7 +13,7 @@ const Error = ({err, boldWords, isCentered, ...props}) => {
         {wordsArray.map((word, index) => {
           let isBold = false;
           //compare each word if is in the list of bold words
-          if (boldWords != null || boldWords != undefined) {
+          if (boldWords != null || boldWords !== undefined) {
             boldWords.map((boldWord) => {
               if (boldWord === word) {
                 isBold = true;
@@ -40,7 +40,7 @@ const Error = ({err, boldWords, isCentered, ...props}) => {
         styles.errContainer,
         {width: isCentered ? null : Dimensions.get('screen').width / 1.1},
       ]}>
-      <StatusBar animated backgroundColor={'#FF584F'}></StatusBar>
+      <StatusBar animated backgroundColor={'#FF584F'} />
       {RichText()}
     </View>
   );

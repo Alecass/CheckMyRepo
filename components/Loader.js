@@ -6,10 +6,6 @@ const Loader = ({loading}) => {
   const [fade] = useState(new Animated.Value(0));
 
   useEffect(() => {
-    animationHandler();
-  }, [loading]);
-
-  const animationHandler = () => {
     if (loading) {
       Animated.timing(fade, {
         toValue: 1,
@@ -24,12 +20,13 @@ const Loader = ({loading}) => {
         useNativeDriver: true,
       }).start();
     }
-  };
+  }, [loading]);
+
   return (
     <Animated.View style={[styles.loaderContainer, {opacity: fade}]}>
       <View style={styles.loaderImageContainer}>
         <Image
-          style={{height: 40, width: 40}}
+          style={styles.image}
           source={require('../assets/images/loading.gif')}
         />
       </View>
@@ -57,5 +54,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 100,
     padding: 20,
+  },
+  image: {
+    height: 40,
+    width: 40,
   },
 });

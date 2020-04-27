@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 //Main Page
@@ -7,12 +7,13 @@ import Main from '../screens/Main';
 import Modal from '../screens/Modal';
 //state
 import {AppContext} from '../state/appState';
+//components
 import Success from '../screens/Success';
 
 const Stack = createStackNavigator();
 
 const Navigation = () => {
-  const [app, setApp] = useContext(AppContext);
+  const [app] = useContext(AppContext);
   return (
     <NavigationContainer>
       <Stack.Navigator
